@@ -1,38 +1,328 @@
 .App {
-  text-align: center;
+    background-image: url(bg.jpg);
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Calc {
+    width: 940px;
+    height: 100%;
+    margin: 41px auto auto;
+    display: flex;
+    flex-direction: column;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.Calc__Header {
+    height: 60px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Calc__Header__Title {
+    width: 100%;
+    height: auto;
+    font-size: 48px;
+    line-height: 81px;
+    color: #383838;
+    font-family: Circe, sans-serif;
+    text-align: center;
+
 }
 
-.App-link {
-  color: #61dafb;
+.Calc__Header__BottomLine {
+    width: 58px;
+    height: 3px;
+    background-color: #0095f9;
+    margin: auto;
+    margin-top: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Calc__Container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 62px;
+
+}
+
+.Calc__OptionsList {
+    width: 482px;
+    height: 404px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Calc__OptionsList__Container {
+    width: 100%;
+    display: flex;
+    margin-top: 18px;
+
+}
+
+.Calc__OptionsList__Container2 {
+    width: 100%;
+    display: flex;
+    margin-top: 7px;
+}
+
+.Calc__TotalPrice {
+    margin-top: 46px;
+    width: 479px;
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow: 1px 1.732px 9px rgba(30, 31, 31, 0.35);
+    background-color: #ffffff;
+    padding-bottom: 38px;
+
+}
+
+.Calc__OptionsList__ChooseService {
+    margin-right: 191px;
+    margin-left: 7px;
+    font-size: 17px;
+    color: #3c3c3c;
+    font-family: Circe, sans-serif;
+
+}
+
+.Calc__OptionsList__ChooseService2 {
+    margin-right: 210px;
+    margin-left: 7px;
+    font-size: 17px;
+    color: #3c3c3c;
+    font-family: Circe, sans-serif;
+
+}
+
+.Calc__OptionsList__Unit {
+    font-size: 17px;
+    color: #3c3c3c;
+    font-family: Circe, sans-serif;
+
+    margin-right: 10px;
+}
+
+
+.MuiNativeSelect-root {
+    width: 200px;
+}
+
+.Calc__AddService_AddBtn {
+    font-size: 16px;
+    line-height: 44px;
+    color: #0095f9;
+    font-family: Circe, sans-serif;
+    font-weight: 300;
+    margin-right: 90px;
+}
+
+.Calc__AddService_DelBtn {
+    font-size: 16px;
+    line-height: 44px;
+    color: #ff000c;
+    font-family: Circe, sans-serif;
+    font-weight: 300;
+}
+
+.Calc__AddService {
+    border-bottom: 1px solid #3c3c3c;
+    width: 395px;
+
+}
+
+.TotalPrice__Header__Title {
+    font-size: 22px;
+    color: #000000;
+    font-family: Circe, sans-serif;
+    margin-top: 32px;
+    margin-left: 34px;
+}
+
+.TotalPrice__Header__BottomLine {
+    width: 58px;
+    height: 3px;
+    background-color: #0095f9;
+    margin-left: 34px;
+    margin-top: 17px;
+}
+
+.TotalPrice__Main {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.TotalPrice__Main__1 {
+    display: flex;
+    flex-direction: row;
+    margin-top: 32px;
+    margin-left: 25px;
+    height: fit-content;
+}
+
+.TotalPrice__Main__Name {
+    border-right: 1px solid black;
+    font-size: 16px;
+    line-height: 16px;
+    color: #3c3c3c;
+    width: 131px;
+    font-family: Circe, sans-serif;
+    height: 29px;
+    /*padding-right: 10px;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.TotalPrice__Main__Unit {
+    border-right: 1px solid black;
+    font-size: 16px;
+    line-height: 16px;
+    color: #3c3c3c;
+    font-family: Circe, sans-serif;
+    height: 29px;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 87px;
+}
+
+.TotalPrice__Main__Quantity {
+    border-right: 1px solid black;
+    font-size: 16px;
+    line-height: 16px;
+    color: #3c3c3c;
+    font-family: Circe, sans-serif;
+    height: 29px;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+}
+
+.TotalPrice__Main__Price {
+    font-size: 18px;
+    color: #0095f9;
+    font-family: Circe, sans-serif;
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TotalPrice__BottomLine {
+    border-bottom: 1px solid black;
+    width: 397px;
+
+    background-color: #3c3c3c;
+    margin: auto;
+    margin-left: 35px;
+    margin-top: 39px;
+}
+
+.TotalPrice__Price {
+    font-size: 22px;
+    color: #000000;
+    font-family: Circe, sans-serif;
+    margin-left: 34px;
+    margin-top: 21px;
+
+}
+
+.TotalPrice__PriceValue {
+    font-size: 22px;
+    color: #0095f9;
+    font-family: Circe, sans-serif;
+    margin-left: 12px;
+}
+
+.TotalPrice__ByeBtn {
+    font-size: 22px;
+    color: #0095f9;
+    font-family: Circe, sans-serif;
+    width: 150px;
+    height: 35px;
+    border-radius: 8px;
+    background-color: #0095f9;
+    margin-left: 34px;
+    margin-top: 18px;
+}
+
+.TotalPrice__Agreement {
+    display: flex;
+    flex-direction: row;
+    margin-left: 23px;
+    margin-top: 14px;
+}
+
+.TotalPrice__Title {
+    font-size: 14px;
+    color: #3c3c3c;
+    font-family: Circe, sans-serif;
+    font-weight: 300;
+    margin-top: 10px;
+
+}
+
+.Calc__OptionList__Type {
+    font-size: 17px;
+    color: #3c3c3c;
+    font-family: Circe, sans-serif;
+    width: 68px;
+    height: 39px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #9d9d9c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.TextStyle {
+    width: 308px;
+    height: 42px;
+    margin-right: 18px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #9d9d9c;
+    font-size: 17px;
+    color: #3c3c3c;
+    font-family: Circe, sans-serif;
+    font-weight: bold;
+    text-align: right;
+}
+
+.ModalView {
+    margin: auto;
+    width: 467px;
+    height: 422px;
+    box-shadow: 1px 1.732px 9px rgba(30, 31, 31, 0.35);
+    background-color: #ffffff;
+}
+
+.AmountStyles {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: #3c3c3c;
+    font-family: Circe, sans-serif;
+}
+
+.AmountStylesContainer {
+    width: 68px;
+    height: 39px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #9d9d9c;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
 }

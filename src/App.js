@@ -1,25 +1,29 @@
+import Grid from "@material-ui/core/Grid";
+import axios from "axios";
+import {useState} from "react";
+import {useEffect} from "react";
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Calc from "./components/calc.js";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios(
+                'https://beton.tesla.cloudtech.ltd/json.php',
+            );
+            setData(response.data)
+        }
+        fetchData();
+    }, []);
+
+    return (
+    <Grid className="App">
+      <Calc
+          data={data}
+      />
+    </Grid>
   );
 }
 
