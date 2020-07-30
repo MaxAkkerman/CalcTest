@@ -13,7 +13,12 @@ function App() {
             const response = await axios(
                 'https://beton.tesla.cloudtech.ltd/json.php',
             );
-            setData(response.data)
+            let restructuredData = [];
+            let op = response.data;
+
+            // restructuredData.push(op);
+            // restructuredData[0].push({"order":1});
+            setData(op)
         }
         fetchData();
     }, []);
