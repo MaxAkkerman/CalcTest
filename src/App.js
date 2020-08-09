@@ -13,23 +13,21 @@ function App() {
             const response = await axios(
                 'https://beton.tesla.cloudtech.ltd/json.php',
             );
-            let restructuredData = [];
             let op = response.data;
 
-            // restructuredData.push(op);
-            // restructuredData[0].push({"order":1});
             setData(op)
         }
+
         fetchData();
     }, []);
 
     return (
-    <Grid className="App">
-      <Calc
-          data={data}
-      />
-    </Grid>
-  );
+        <Grid className="App">
+            <Calc
+                data={data}
+            />
+        </Grid>
+    );
 }
 
 export default App;

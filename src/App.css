@@ -4,7 +4,6 @@
     width: 100%;
     height: 100%;
     position: absolute;
-
 }
 
 .Calc {
@@ -14,7 +13,6 @@
     display: flex;
     flex-direction: column;
 }
-
 
 .Calc__Header {
     height: 60px;
@@ -156,7 +154,7 @@
 .TotalPrice__Main__1 {
     display: flex;
     flex-direction: row;
-    margin-top: 32px;
+    margin-top: 22px;
     margin-left: 25px;
     height: fit-content;
 }
@@ -223,7 +221,7 @@
     background-color: #3c3c3c;
     margin: auto;
     margin-left: 35px;
-    margin-top: 39px;
+    margin-top: 22px;
 }
 
 .TotalPrice__Price {

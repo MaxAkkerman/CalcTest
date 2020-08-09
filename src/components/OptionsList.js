@@ -22,74 +22,52 @@ const useStyles = makeStyles({
 });
 
 function OptionsList(props) {
-    const {data, id, handleDeleteSelectProps, handleCurrentData, handleAmount, handleCurrentOptions} = props;
+    const {data, id, handleDeleteSelectProps, handleAddNewItem, handleChangeAmount, handleCurrentData, handleCurrentOptions} = props;
     const classes = useStyles();
 
     const [type, setType] = useState("");
     const [categoryList, setCategoryList] = useState([{name: "M-100"}]);
-    const [amount, setAmount] = useState(1);
-    const [mounted, setMounted] = useState(true)
+    const [curOption, setCurrentOption] = useState("");
+    const [currentSelector, setCurrentSelector] = useState("");
 
     useEffect(() => {
-        handleAmount(amount)
-    }, [amount]);
-    function receiveData(){
-        // let d = props.data ? props.data[0].category_list : "M-100";
-        // return d
-    }
-
-
-        useEffect(() => {
-            // Create an scoped async function in the hook
-           //  async function anyNameFunction() {
-           //      await receiveData();
-           //  }
-           //  // Execute the created function directly
-           // anyNameFunction().then(data=> setCategoryList(data));
-           //  // setCategoryList(x)
-           //  console.log("xxxxxxxxxxx")
-        }, []);
+        let x = data[0].currentOption;
+        let ui = data[0].currenOptions.map(item => {
+            item.selecteOpt = item.name === x;
+            return item
+        });
+        setCategoryList(ui);
+    }, [data]);
 
     function handleChangeSelect(e) {
-        let x = data.filter(item => item.category_name === e.target.value);
+        let x = data[1].filter(item => item.category_name === e.target.value);
         let value = e.target.value;
+        let optionsCurrent = x[0].category_list;
 
-        setCategoryList(x[0].category_list);
-        setAmount(1);
         setType(x[0].type);
-
-        handleCurrentData(x, id, value);
+        setCurrentSelector(value);
+        handleCurrentData(x, id, value, optionsCurrent, curOption);
     }
-
-
 
     function handleChangeOption(e) {
-        let y = categoryList.filter(item => item.name === e.target.value);
+        let optionValue = e.target.value;
 
-        let value = e.target.value;
-        handleCurrentOptions(y,id,value)
-
-    }
-    function handleAddNewSelect(){
-        props.handleAddNewSelect(id)
-    }
-    function handleDeleteSelect(){
-        handleDeleteSelectProps(props.id)
+        setCurrentOption(optionValue);
+        handleCurrentOptions(categoryList, id, optionValue, currentSelector);
     }
 
-
-//DONT TOUCH
-    function handleIncreaseAmount() {
-        setAmount(amount + 1)
-        console.log(id)
+    function handleAddNewSelect() {
+        handleAddNewItem(id)
     }
 
-    function handleDecreaseAmount() {
-        if (amount <= 1) {
-            return
-        }
-        setAmount(amount - 1)
+    function handleDeleteSelect() {
+        handleDeleteSelectProps(id)
     }
+
+    function handleIncreaseAmount(e) {
+        handleChangeAmount(e, props.id);
+    }
+
     return (
         <>
             <Grid className='Calc__OptionsList__Container'
@@ -98,45 +76,55 @@ function OptionsList(props) {
                 <span className="Calc__OptionsList__Unit">Ед.изм.</span>
             </Grid>
 
-            <Grid className='Calc__OptionsList__Container2'>
+            <Grid
+                className='Calc__OptionsList__Container2'
+            >
                 <select
+                    defaultValue={data[0].categoryName}
                     children={
-                        data.map(item => <option key={item.category_name}>{item.category_name}</option>)
-                            }
+                        data[1].map(item => <option value={item.category_name}
+                                                    selected={item.selecteOpt ? "selected" : ""}
+                                                    key={item.category_name}>
+                            {item.category_name}
+                        </option>)
+                    }
                     className="TextStyle"
                     onChange={(e) => handleChangeSelect(e)}
-
                 >
+
                 </select>
                 <Grid className='Calc__OptionList__Type'>
                     {type ? type : "м3"}
                 </Grid>
             </Grid>
-
             <Grid className='Calc__OptionsList__Container'>
                 <span className="Calc__OptionsList__ChooseService2">Наименование</span>
                 <span className="Calc__OptionsList__Unit">Кол-во</span>
             </Grid>
-
             <Grid className='Calc__OptionsList__Container2'>
                 <select
                     className="TextStyle"
+                    defaultValue={data[0].currentOption}
+                    children={categoryList.map(item =>
+                        <option value={item.name}
+                                selected={item.selecteOpt ? "selected" : ""}
+                                key={item.name}>
+                            {item.name}
+                        </option>)}
                     onChange={(e) => handleChangeOption(e)}
                 >
-                    {categoryList.map(item => <option key={item.name}>{item.name}</option>)}
                 </select>
-
                 <Grid className="AmountStylesContainer">
                     <Grid className="AmountStyles">
-                        {amount}
+                        {data[0].amount}
                     </Grid>
-                    <Button onClick={() => handleIncreaseAmount()} classes={{
+                    <Button value={"increase"} onClick={(e) => handleIncreaseAmount(e)} classes={{
                         root: classes.root,
                         text: classes.text,
                     }}>
                         <ArrowDropUpIcon/>
                     </Button>
-                    <Button onClick={() => handleDecreaseAmount()} classes={{
+                    <Button value={"decrease"} onClick={(e) => handleIncreaseAmount(e)} classes={{
                         root: classes.root,
                         text: classes.text,
                     }}>
@@ -145,10 +133,10 @@ function OptionsList(props) {
                 </Grid>
             </Grid>
             <Grid className="Calc__AddService">
-                <span onClick={()=>handleAddNewSelect()} className="Calc__AddService_AddBtn">Добавить еще позицию</span>
-                <span onClick={()=>handleDeleteSelect()}className="Calc__AddService_DelBtn">Удалить позицию</span>
+                <span onClick={() => handleAddNewSelect()}
+                      className="Calc__AddService_AddBtn">Добавить еще позицию</span>
+                <span onClick={() => handleDeleteSelect()} className="Calc__AddService_DelBtn">Удалить позицию</span>
             </Grid>
-
         </>
     )
 }
