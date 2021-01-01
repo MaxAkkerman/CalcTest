@@ -14,7 +14,6 @@ function App() {
                 'https://beton.tesla.cloudtech.ltd/json.php',
             );
             let op = response.data;
-
             setData(op)
         }
 

@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 function OptionsList(props) {
-    const {data, id, handleDeleteSelectProps, handleAddNewItem, handleChangeAmount, handleCurrentData, handleCurrentOptions} = props;
+    const {data, id, handleDeleteSelectProps, goodsAmount, handleAddNewItem, handleChangeAmount, handleCurrentData, handleCurrentOptions} = props;
     const classes = useStyles();
 
     const [type, setType] = useState("");
@@ -51,7 +51,7 @@ function OptionsList(props) {
 
     function handleChangeOption(e) {
         let optionValue = e.target.value;
-
+        console.log("dataaa", data)
         setCurrentOption(optionValue);
         handleCurrentOptions(categoryList, id, optionValue, currentSelector);
     }
@@ -80,6 +80,7 @@ function OptionsList(props) {
                 className='Calc__OptionsList__Container2'
             >
                 <select
+
                     defaultValue={data[0].categoryName}
                     children={
                         data[1].map(item => <option value={item.category_name}
@@ -135,7 +136,7 @@ function OptionsList(props) {
             <Grid className="Calc__AddService">
                 <span onClick={() => handleAddNewSelect()}
                       className="Calc__AddService_AddBtn">Добавить еще позицию</span>
-                <span onClick={() => handleDeleteSelect()} className="Calc__AddService_DelBtn">Удалить позицию</span>
+                {goodsAmount < 2 ? null : <span onClick={() => handleDeleteSelect()} className="Calc__AddService_DelBtn">Удалить позицию</span>}
             </Grid>
         </>
     )

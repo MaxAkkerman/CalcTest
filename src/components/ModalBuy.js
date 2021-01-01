@@ -44,6 +44,7 @@ export default function SimpleModal(props) {
             <h2 id="simple-modal-title">Ваш заказ</h2>
             {props.normalizedData.map(item=>
                 <SelectedDataView
+                    key={item[0].amount}
                     categoryName={item[0].categoryName}
                     categoryOption={item[0].currentOption}
                     amount={item[0].amount}
